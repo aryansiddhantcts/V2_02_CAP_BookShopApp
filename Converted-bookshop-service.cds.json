@@ -1,0 +1,389 @@
+{
+  "service": {
+    "name": "bookshop",
+    "title": "BookShop",
+    "description": "Entity-based custom service for Book Shop",
+    "authorizationRelevant": true,
+    "fullName": "customer.ssc.service.bookshopService"
+  },
+  "entities": [
+    {
+      "name": "Books",
+      "title": "Books",
+      "entityType": "BUSINESS",
+      "objectTypeCode": "CUS01790",
+      "root": true,
+      "creatable": true,
+      "updatable": true,
+      "attributes": [
+        {
+          "name": "ID",
+          "label": "ID",
+          "dataType": "STRING",
+          "keyType": "PRIMARY",
+          "dataFormat": "UUID",
+          "nullable": false,
+          "creatable": false,
+          "updatable": false,
+          "filterable": true,
+          "searchable": false,
+          "sortable": false,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.ID",
+          "searchWeightage": 1
+        },
+        {
+          "name": "bookid",
+          "label": "Book ID",
+          "dataType": "STRING",
+          "dataFormat": "ALPHANUMERIC",
+          "nullable": false,
+          "creatable": true,
+          "updatable": false,
+          "filterable": true,
+          "searchable": true,
+          "sortable": true,
+          "displayId": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.bookid",
+          "searchWeightage": 1
+        },
+        {
+          "name": "title",
+          "label": "Book Name",
+          "dataType": "STRING",
+          "dataFormat": "STRING",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "searchable": true,
+          "sortable": true,
+          "description": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.title",
+          "searchWeightage": 1
+        },
+        {
+          "name": "genre",
+          "label": "Genre",
+          "dataType": "INTEGER",
+          "dataFormat": "INT32",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "enumOptions": [
+            {
+              "code": "1",
+              "description": "Fiction",
+              "default": false
+            },
+            {
+              "code": "2",
+              "description": "Non Fiction",
+              "default": false
+            }
+          ],
+          "searchable": true,
+          "sortable": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.genre",
+          "searchWeightage": 1
+        },
+        {
+          "name": "publCountry",
+          "label": "Publishing Country",
+          "dataType": "STRING",
+          "dataFormat": "STRING",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "searchable": true,
+          "sortable": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.publCountry",
+          "searchWeightage": 1
+        },
+        {
+          "name": "price_amount",
+          "label": "Price Amount",
+          "dataType": "NUMBER",
+          "dataFormat": "FLOAT",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "searchable": false,
+          "sortable": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.price_amount",
+          "searchWeightage": 1
+        },
+        {
+          "name": "price_currency",
+          "label": "Price Currency",
+          "dataType": "STRING",
+          "dataFormat": "STRING",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "searchable": false,
+          "sortable": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.price_currency",
+          "searchWeightage": 1
+        },
+        {
+          "name": "stock",
+          "label": "Stock",
+          "dataType": "INTEGER",
+          "dataFormat": "INT32",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "searchable": false,
+          "sortable": true,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.stock",
+          "searchWeightage": 1
+        },
+        {
+          "name": "isHardcover",
+          "label": "Hardcover",
+          "dataType": "BOOLEAN",
+          "nullable": true,
+          "creatable": true,
+          "updatable": true,
+          "filterable": true,
+          "searchable": false,
+          "sortable": false,
+          "analyticsRelevant": false,
+          "labelTextId": "Books.isHardcover",
+          "searchWeightage": 1
+        }
+      ],
+      "label": "Book",
+      "fullName": "customer.ssc.bookshopservice.entity.Books"
+    }
+  ],
+  "events": [
+    {
+      "name": "bookCreate",
+      "entityReference": "Books",
+      "trigger": "CREATE",
+      "fullName": "customer.ssc.bookshopservice.event.bookCreate"
+    },
+    {
+      "name": "bookUpdate",
+      "entityReference": "Books",
+      "trigger": "UPDATE",
+      "fullName": "customer.ssc.bookshopservice.event.bookUpdate"
+    },
+    {
+      "name": "bookDelete",
+      "entityReference": "Books",
+      "trigger": "DELETE",
+      "fullName": "customer.ssc.bookshopservice.event.bookDelete"
+    }
+  ],
+  "apis": [
+    {
+      "name": "booksApi",
+      "description": "API for interacting with CAP Books",
+      "title": "Books API",
+      "apiPath": "/book-shop-app/Books",
+      "entityReference": "Books",
+      "operations": [
+        {
+          "id": "queryBooks",
+          "path": "/",
+          "method": "QUERY",
+          "request": {
+            "pathVariables": []
+          },
+          "responses": [
+            {
+              "description": "200 OK",
+              "responseCode": "200"
+            },
+            {
+              "description": "400 BAD_REQUEST",
+              "responseCode": "400"
+            },
+            {
+              "description": "401 UNAUTHORIZED",
+              "responseCode": "401"
+            },
+            {
+              "description": "403 FORBIDDEN",
+              "responseCode": "403"
+            },
+            {
+              "description": "404 NOT_FOUND",
+              "responseCode": "404"
+            },
+            {
+              "description": "500 INTERNAL_SERVER_ERROR",
+              "responseCode": "500"
+            }
+          ]
+        },
+        {
+          "id": "readBooksById",
+          "path": "/{booksId}",
+          "method": "READ",
+          "request": {
+            "pathVariables": [
+              {
+                "name": "ID",
+                "dataType": "STRING",
+                "dataFormat": "UUID"
+              }
+            ]
+          },
+          "responses": [
+            {
+              "description": "200 OK",
+              "responseCode": "200"
+            },
+            {
+              "description": "400 BAD_REQUEST",
+              "responseCode": "400"
+            },
+            {
+              "description": "401 UNAUTHORIZED",
+              "responseCode": "401"
+            },
+            {
+              "description": "403 FORBIDDEN",
+              "responseCode": "403"
+            },
+            {
+              "description": "404 NOT_FOUND",
+              "responseCode": "404"
+            },
+            {
+              "description": "500 INTERNAL_SERVER_ERROR",
+              "responseCode": "500"
+            }
+          ]
+        },
+        {
+          "id": "createBooks",
+          "path": "/",
+          "method": "POST",
+          "request": {
+            "pathVariables": []
+          },
+          "responses": [
+            {
+              "description": "201 Created",
+              "responseCode": "201"
+            },
+            {
+              "description": "400 BAD_REQUEST",
+              "responseCode": "400"
+            },
+            {
+              "description": "401 UNAUTHORIZED",
+              "responseCode": "401"
+            },
+            {
+              "description": "403 FORBIDDEN",
+              "responseCode": "403"
+            },
+            {
+              "description": "500 INTERNAL_SERVER_ERROR",
+              "responseCode": "500"
+            }
+          ]
+        },
+        {
+          "id": "updateBooks",
+          "path": "/{booksId}",
+          "method": "PATCH",
+          "request": {
+            "pathVariables": [
+              {
+                "name": "ID",
+                "dataType": "STRING",
+                "dataFormat": "UUID"
+              }
+            ]
+          },
+          "responses": [
+            {
+              "description": "200 OK",
+              "responseCode": "200"
+            },
+            {
+              "description": "400 BAD_REQUEST",
+              "responseCode": "400"
+            },
+            {
+              "description": "401 UNAUTHORIZED",
+              "responseCode": "401"
+            },
+            {
+              "description": "403 FORBIDDEN",
+              "responseCode": "403"
+            },
+            {
+              "description": "404 NOT_FOUND",
+              "responseCode": "404"
+            },
+            {
+              "description": "500 INTERNAL_SERVER_ERROR",
+              "responseCode": "500"
+            }
+          ]
+        },
+        {
+          "id": "deleteBooks",
+          "path": "/{booksId}",
+          "method": "DELETE",
+          "request": {
+            "pathVariables": [
+              {
+                "name": "ID",
+                "dataType": "STRING",
+                "dataFormat": "UUID"
+              }
+            ]
+          },
+          "responses": [
+            {
+              "description": "200 OK",
+              "responseCode": "200"
+            },
+            {
+              "description": "400 BAD_REQUEST",
+              "responseCode": "400"
+            },
+            {
+              "description": "401 UNAUTHORIZED",
+              "responseCode": "401"
+            },
+            {
+              "description": "403 FORBIDDEN",
+              "responseCode": "403"
+            },
+            {
+              "description": "404 NOT_FOUND",
+              "responseCode": "404"
+            },
+            {
+              "description": "500 INTERNAL_SERVER_ERROR",
+              "responseCode": "500"
+            }
+          ]
+        }
+      ],
+      "fullName": "customer.ssc.bookshopservice.api.booksApi"
+    }
+  ]
+}

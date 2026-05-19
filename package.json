@@ -1,0 +1,49 @@
+{
+  "name": "book-shop-app",
+  "version": "1.0.0",
+  "description": "SAP Service Cloud V2 — Book Shop App (CAP + SQLite)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build:cf": "npx cds build --production && npx cds deploy --to sqlite:gen/srv/db.sqlite --no-save",
+    "ssc:json": "cds -2 json srv/bookshop-service.cds > bookshop-service.cds.json"
+  },
+  "dependencies": {
+    "@sap/cds": "^8",
+    "express": "^4",
+    "sqlite3": "^5"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "url": "db.sqlite"
+      },
+      "[production]": {
+        "auth": "mocked",
+        "db": {
+          "kind": "sqlite",
+          "url": "db.sqlite"
+        }
+      }
+    },
+    "features": {
+      "fiori_preview": true
+    },
+    "fiori": {
+      "preview": {
+        "ui5": {
+          "theme": "sap_horizon",
+          "version": ""
+        }
+      }
+    }
+  }
+}
