@@ -45,8 +45,8 @@ module.exports = class BookShopService extends cds.ApplicationService {
  
     // ── UPDATE: Validate fields on edit ────────────────────────────────────
     this.before('UPDATE', Books, (req) => {
-      const { title, stock, price_amount } = req.data;
- 
+      const { bookid, title, stock, price_amount } = req.data;
+      
       // Prevent clearing title on update
       if (title !== undefined && !title) {
         req.error(400, 'Title cannot be empty.');
@@ -61,7 +61,11 @@ module.exports = class BookShopService extends cds.ApplicationService {
       if (price_amount !== undefined && price_amount < 0) {
         req.error(400, 'Price amount cannot be negative.');
       }
- 
+      // Book ID validation
+      if (bookid !== undefined && !bookid) {
+        req.error(400, 'Book ID cannot be empty.');
+      }
+
       console.log(`[BEFORE UPDATE] Updating book ID: ${req.data.ID}`);
     });
  

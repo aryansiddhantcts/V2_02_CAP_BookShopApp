@@ -24,14 +24,14 @@ type Genre     : Integer enum {
 //     dateOfDeath : Date;
 // }
 @isRoot
-@odata.containment: false 
+@odata.containment: false cds
 entity Books : cuid, managed {
-    @Core.Immutable: true
-    bookid      : String(20)  @title: 'Book ID';
+    @Core.Immutable: true                            //field cannot be updated after creation
+    bookid      : String(20)  @title: 'Book ID';     //bookid     @Core.Immutable: true,   // ← enforce here in service layer
     title       : String(100) @title: 'Book Name';
     genre       : Genre       @title: 'Genre';
     publCountry : String(3)   @title: 'Publishing Country';
     price       : Price       @title: 'Price';
     stock       : NoOfBooks   @title: 'Stock';
-    isHardcover : Boolean     @title: 'Hardcover';
+    isHardcover : Boolean     @title: 'Hardcover' default true;
 }
