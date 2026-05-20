@@ -155,8 +155,8 @@ module.exports = class BookShopService extends cds.ApplicationService {
       list.forEach(book => {
         if (book) {
           // Add a computed display field
-          book.priceFormatted = book.price_amount && book.price_currency
-            ? `${book.price_currency} ${book.price_amount}`
+          book.priceFormatted = book.price_amount && book.price_currency_code
+            ? `${book.price_currency_code} ${book.price_amount}`
             : 'N/A';
  
           // Add genre label
